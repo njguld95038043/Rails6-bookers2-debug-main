@@ -9,7 +9,7 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr>
+  		  <tr id="book_<%= @book.id %>">
           <td><%= link_to(@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
             <%= @book.user.name %>
@@ -17,6 +17,8 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></td>
+          <td class="comments-count">コメント数: <%= @book.post_comments.count %></td>
           <td>
           <% if @book.favorited_by?(current_user) %>
            <p>
@@ -49,8 +51,8 @@
                 <% end %>
               <% end %>
 
-            <%= form_with model: [@book, @post_comment], local: true do |f| %>
-              <%= f.text_area :comment, rows: '5' %>
+            <%= form_with model: [@book, @post_comment] do |f| %>
+              <%= f.text_area :comment, size:"90x5" %>
               <%= f.submit "送信" %>
             <% end %>
           </td>
