@@ -1,1 +1,4 @@
-$("#book_<%= @book.id %> .favorite-btn").html("<%= j(render 'favorites/favorite-btn', book: @book) %>");
+console.log('通過しました')
+$('.favorite__btn--' + <%= @book.id %>).html("<%= j(render 'favorites/favorite-btn', book: @book) %>")
+console.log('通過しました')
+console.log(@book.id)
